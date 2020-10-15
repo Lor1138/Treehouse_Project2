@@ -18,13 +18,8 @@ function showPage (list, page) {
     }
    
 };
-
-
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
-
+ 
+//This function creates elements to append to the page with 10 students per link
 
 function appendPageLinks(list) {
    const studentsPerPage = Math.ceil(list.length/10);
@@ -38,13 +33,12 @@ function appendPageLinks(list) {
    pageContent.appendChild(pageUL);
    document.body.appendChild(pageContent);
 
-// create 5 buttons    
+// creates buttons that dynamically add page links depending on the amount of students
       for(let i = 0; i < studentsPerPage; i++){
 
         const pageLink = document.createElement('a');
         let paginationLi = document.createElement('li');
         const pageLinkLabel = document.createTextNode(`${i+1}`);
-        // paginationLi += studentItems/10;
         pageLink.appendChild(pageLinkLabel);
         pageLink.href = '#';
         paginationLi.appendChild(pageLink);
@@ -55,7 +49,8 @@ function appendPageLinks(list) {
             pageLink.classList.remove('active');
         }
       
-
+        // when the link is clicked, it gives it the 'active' class, and then removes it when another 
+        //link is clicked.
       pageLink.addEventListener('click', (event) => { 
          const pageNumbers = pageUL.querySelectorAll('a');
             showPage(list, i+1);
@@ -67,7 +62,7 @@ function appendPageLinks(list) {
       }
   
    }
-
+   //call the functions to interact with the HTML and DOM
    showPage(studentItems, 1);
    appendPageLinks(studentItems);
    
